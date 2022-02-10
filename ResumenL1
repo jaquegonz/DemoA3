@@ -1,0 +1,60 @@
+---
+title: "Resumen: Población y demografía"
+output: html_document
+---
+###### Hecho por: Jaqueline González Andrés 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Población y demografía
+## ¿Qué es la demografía?
+> La demografía es aquello que estudian los demógrafos
+
+La población es el conjunto de indivudios, constituidos de forma estable, ligado por reproducción e identificado por características terrritoriales, políticas, jurídicas, étnicas o religiosas. </p>
+  * Conjunto de individuos, constituido de forma estable: Esta excluye a las colectividades ocasionales y transitoria, pues no son estables.
+  * Ligado por la reproducción: Por lo anterior, no son estables porque carecen de una continuidad en el tiempo, pues estas colectividades no asefuran uan reproducción.
+  * Identificado por caracteristicas territoriales, políticas, jurídicas, étinicas o religiosas: Estas fronteras son tan definidad que asumen su propia autonomia y estabilidad grarantizando los dos anteriores.</p>
+
+Cabe destacar que el conservarse en el tiempo no significa que la población sea eterna. </p>
+Su fugacidad se refiere a que se forman y se extinguen pues al ser formadas por migraciones con una gran capacidad de reproducción esta podrá terminarse porque la natalidad es insuficiente para compensar la mortalidad. </p>
+Por lo tanto la demografía estudia  aquellos procesos que determinan la formación, conservación y desaparición de las poblaciones.
+
+## Componentes básicos de la población y su estructura
+
+La población esta compuesta por unidades básicas y compuestas las cuales pueden clasificarse bilogíca y sociológica. </p>
+Biológica por sexo, fecundidad o sociológica como estado civil o lugar de nacimiento.
+
+## Procesos de coheción y de agregación de una población
+
+Las unidades compuestas se forman por nupcialidad, fecundidad y movilidad y se deshacen por la intervención de sus contrarios: disolución del matrimonio, muerte y movilidad contraria. </p>
+Estos procesos de cohesión y repulsión no son solamente demográficos, pues pueden ser afectados por la cultura o economía y así reforzar o debilitar los procesos demográficos. </p>
+Además de que estos elementos no generan la misma reacción sobre cada individuo y que la diversa intensidad sobre el mismo no es causado gracias a la casualidad. </p>
+Por lo tanto el objeto de estudio de la demografía es la forma en la que se distribuyen y agrupan las poblaciones. Pues estas conbinaciones determinan diferentes ordenamientos estructurales para una población.
+
+## Lo biológico y lo social
+
+La demografia y lo biologico-social tienen una relación hacia ambos lados. </p>
+Tanto factores naturales y sociales coexisten y se influyen mutuamente, pues un efecto en sociedad tiene una consecuencia biológica la cual puede alterar las caracteristicas de la población. </p>
+**Hay una interacción recíproca entre factores naturales y sociales y los fenómenos demograficos.** Por lo tanto un demografó debe de mantener una relación con la biología, genetica, ciencias naturales, geografía, antropología y sociología.
+
+# Fuentes estadísticas y errores
+
+## Los censos
+Es la operación de contabilización individual, universal y simultaneo: </p>
+  + Individual: Cada individuo debe de ser contabilizado de forma separada.
+  * Universal: Mientras exista dentro de los límites del territorio censado.
+  - Simultaneo: La enumeración tiene que ser a un mismo día u hora (Aunque materialmente dure varios días). </p>
+
+Los planes de codificación, registro y corrección automática, de recopilación, elaboración y publicación de los resultados requieren un tiempo bastante largo. Du duración aproximada es de 10 años.
+
+## Naturaleza de los datos
+
+La cantidad de información que se deduce del censo no depende solamente del número y tipo de preguntas, sino tambien el tratamiento que se da a las distintas características recogidas, combinandolas entre sí, así como el grado de detalle territorial; esta última es la razín por la cual estos datos se dividen en pequeños grupos de regiones, estados, etc. </p>
+Por otro lado, las preguntas tienen limitaciones en su plantemiento pues deben de ser preguntas básicas, esenciales, fácil e inequivoca respuesta, proporcionando datos objetivos y lo más preciso posible. </p>
+**Un censo debe procurar elementos sólidos para posteriores investigaciones parciales y muestrales concebidas _ad hoc_ para e estuio de los aspectos no tratados en el censo.**
+
+## Validez y errores de los datos censales
+
+Que los resultados del censos tengan una validez oficial no es suficiente garantía de su exactitud.
+
