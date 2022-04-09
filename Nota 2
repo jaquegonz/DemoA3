@@ -1,0 +1,193 @@
+---
+title: "Notas Demografía"
+output:
+  html_document: default
+  pdf_document: default
+date: '2022-03-16'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# La ecuación compensadora
+Ecuación compensadora es uno de los principales elemtentos de la demografía y se plantea de la siguiente manera.
+$$P_{t+n}=P_{t}+N_{t\rightarrow t+m}-D_{t \rightarrow t+n}-E_{t \rightarrow t+n}$$
+En esta parte solo se considera la migración internacional
+Donde: <br>
+$N=$Nacimiento <br>
+$D=$Defunciones <br>
+$I=$Inmigrantes <br>
+$E=$Emigrantes <br>
+
+Ejemplo:
+$$P_{2022}=P_{2021}+N_{2021-2022}-D_{2021-2022}+I_{2021-2022}-E_{2021-2022}$$
+
+El crecimiento pobalcional se puede ver la dorma 
+$$P_{t+n}-P-{t}=(N_{t+n}+D_{t+n})+(I_{t+n}-E_{t+n})$$
+O de la forma:
+$$CP=CN+CS$$
+Donde:
+$CP=$Crecimeinto poblacional
+$CN=$Crecimiento natural$=N_{t+n}+D_{t+n}$
+$CS=$Crecimiento social$=I_{t+n}-E_{t+n}$
+
+Ejemplo:
+$$P_{2004}=293,657,00$$
+$$P_{2005}=296,420,000$$
+$$N_{2004-2005}=4,129,00$$
+$$D_{2004-2005}=2,425,000$$
+$$I_{2004-2005}=1,122,000$$
+$$E_{2004-2005}=73,000$$
+Por lo tanto:
+$$(296410000-293657000)=(4129000-2425000)+(1122000-73000)$$
+$$\rightarrow CP=2753000$$
+$$\rightarrow CN= 1704000$$
+$$\rightarrow CS=1049000$$
+
+Ahora consideraras la migración interna. Esta no va afectar nuestro crecimeinto polaional pues en realidad nunca salen del territorio.
+La migración interna tiene que ver con las salidas y entradas por entidad $\hat{I}=Inmigrantes internos$ y $\hat{E}=Emigrantes internos$
+
+$$P_{t+n}=P_{t}+N_{t\rightarrow t+m}-D_{t \rightarrow t+n}-E_{t \rightarrow t+n}+\hat{I}_{t+n}-\hat{E}_{t+n}$$
+
+
+Datos referentes al 2005 (Ejemplo):
+$$\begin{array}{1}Entidades & CN & CS_{I} & \hat{CS}&CP\\Edo. Mex   & 44441 & 49607&-12202 &81846 \\Michoacan & 32585 & 44347&3381&80313  \\Chiapas & 35063 & 30486&7391&72942  \\ Baja California & 6724 & 9364 &-2653&13435 \\Nuevo Leon & 29314 & 29314&4996&52828  \\Jalisco &  2001 & 1044&174&3219  \\Sinaloa & 2629 & 699 & -2393&935  \\ Guanajuato&3228&1940&1306&6474\\-------&---&---&---&---\\Total&145191&166801&0&311992 \end{array}$$
+
+---
+
+# Tasas crecimiento poblacional
+## 1)Tasa crecimiento anual
+$$TCA=\frac{P_{t+1}-P{t}}{P_{t}}$$ <br>
+
+### Ejemplo:
+$$TCA=\frac{P_{t+1}-P{t}}{P_{t}}=\frac{296,410,000-293657000}{293657}=.009357$$
+O un crecimiento porcentual de .9357 <br>
+
+## 2)Tasa crecimiento exponencial (Población)
+$$TCE\rightarrow P_{t+n} =P_{t}\cdot e^{r\cdot n}$$
+En está ecuación de despeja r con forme a los datos <br>
+$$\rightarrow r=\frac{ln\left( \frac{P_{t+n}}{P_{t}}\right)}{n}$$
+
+Donde: <br>
+$P_{t}=$Poblacional <br>
+$r=$tasa de crecimiento exponencial <br>
+$n=$número de años <br>
+
+---
+
+# Interpolación y extrapolación
+Después de calcular la tasa de crecimiento exponencial, es decir, de r con esta información se podria calcular la cantidad de población en un país, region, dentro del periodo estimado de la tasa calculada.
+
+Por ejemplo, si estimamos una tasa de crecimiento exponencial de la población en el periodo 2004 a 2011, nosotros podriamos calcular la cantidad de poblacion dentro de ese periodo en cualquier tiempo a través del metodo de interpolaciòn , si nosotros quisieramos calcular la poblacion fuera de ese periodo el metodo para calcular se llama extrapoblación y se planeta de la siguiente manera:  
+
+## Ejemplos
+### Interpolación 
+<br>
+Población inicial del año 2005 30 de junio.  
+Queremos calcular la poblaciòn al 31 de diciembre del 2008.    
+Tenemos una tasa de crecimiento  de _.0139989_.    
+
+_POB(31.DIC.2008)_= ???  
+_POB(30,JUN.2005)_=1,101,318,000    
+_POB(30.JUN.2011)_=1,197,813,000  
+
+Recordemos:      
+$$r=\frac{ln(\frac{P_t+n}{P_t})}{n} $$
+_POB(31.DIC.2008)_= $$(1,101,318,000)\cdot e^{(.01399829\cdot3.5)}=1,156,619,654$$
+
+### Extrapolación 
+<br>
+_POB(1.ABR.200)_= $$(1,101,318,000)e^{(.01399829-5.243835)}=1,023,368,587$$ <br>
+
+
+---
+
+## Tiempo de dublicidad de una población
+En que tiempo una población determinada se duplicará, por lo que se plantea la ecuación que está basada en ña tasa de crecimiento exponencial.
+$$P_{t}=población inicial$$
+$$P_{t+n}=población final$$
+$$r=tasa de crecimiento exponencial$$
+$$n=tiempo$$
+$$P_{t+n}=P_{t}\cdot e^{r\cdot n}$$ Esta es la tasa de crecimiento exponencial
+
+Para conocer esto, necesitamos despejar n, por que queremos conocer cuantos años se tardaría en duplicarse. Con los datos de $P_{t}$, $P_{t+n}$, $r$
+
+Ejemplo:
+$$\frac {P_{t+n}}{p_{n}}=e^{r\cdot n}$$
+$$\frac {P_{t+n}}{p_{n}}=2$$
+$$\therefore \ln2=r\cdot n$$
+Si $r=1.1399829$
+$$\therefore n=\frac{\ln2}{0.01399829}$$
+$$n=49.51319$$
+
+
+Si tenemos una tasa de crecimiento de 1.399829 entonces el tiempo de dplicación de nuestra población será de 49.51 años.
+### Ejercicio
+Queremos conocer en que tiempo se va a duplicar ña población con la tasa de crecimeinto del año 1970... sabemos que la tasa de crecimeinto exponencial
+
+a) Tenemos que en 1970 habia 50.6 millones de personas. ¿En cuánto timepo en México tendríamos 100 millones de personas con una tasa de crecimiento de 3.1%?
+$$n=\frac{\ln2}{.031}$$
+$$n=22.359586647$$
+
+b) En el año 2000 habia 99 millones¿En cuánto timepo en México tendríamos 100 millones de personas con una tasa de crecimiento de 1.4%?
+$$n=\frac{\ln2}{.014}$$
+$$n=49.5105129$$
+
+
+---
+# Dinámica demográfica
+
+En la dinámica dempgráfica se lrelaciona con el tamaño, composición, pérdidas y las ganancias de la población.
+El tamaño se refiere a la cantidad de personas que exiten en un territorio en un tiempo determinado.
+La composición de una población se refieren principalmente al sexo, grupos de edad; es decir, a las características de una población.
+Las pérdidas y ganancias se vinculan con fecundidad(ganancias) la mortalidad (péridas) y la migración.
+
+## Tasas brutas en la población
+Una tasa bruta como su nombre lo indica no considera la composición de la población (sexo, edad, uniones/matrimonio). Y se define de la forma:
+$$TB=\frac{Evento}{Población media}$$
+Con: Problación media definida como el promedio de población durante un periodo de tiempo.
+La población a mitad de año se relaciona con los datos del censo y se asocia a conocer la población a mitad de año (30 de junio).<br>
+
+### Ejemplo
+<br>
+Tenemos la población del año 2004 es de 293,657,000 y la poblacón del año es 296,410,000 entonces la población media del año 2004-2005 es la siguiente
+$$P_{med}=\frac{293,657,000+296,410,000}{2}$$
+Calcular las tasas brutas de los siguientes eventos:
+Tasas brutas de Estados Unidos del 2004 al 2005
+Evento: 
+-nacimientos: 4129000
+-muertes: 2425000
+-inmigración: 1122000
+-emigración: 73000
+$$TBN=\frac{4129000}{295033500} \cdot 1000=13.9950209 %$$
+$\rightarrow$ Por cada 1000 personas en Estados Unidos en el periodo de 2004-2005 nacen 14 personas
+$$TBM=\frac{2425000}{295033500}\cdot 1000=8.219405593%$$
+$$TBI=\frac{1122000}{295033500}\cdot 1000=3.80257969%$$
+$$TBE=\frac{73000}{295033500}\cdot 1000=0.2474295292%$$
+
+## Tasas específicas
+Estas tasas si tienen relación con las características poblacionales (sexo, grupos de edad).
+El planteamiento de las tasas específicas es el siguiente:
+$$Te^{i}=\frac{E^{i}}{Pob^{i}}$$
+Donde:
+
+
+$Te^{i}=$Tasa específica de un evento con la característica i (15-19) <br>
+$E^{i}=$ Es el número del evento de característica i (15-19) <br>
+$Pob^{i}=$ Es la población media con la característica (15-19) <br>
+
+### Proporción de sexos
+Este es otró indicador demográfico que permite conocer la cantidad de hombres que exiten con relación a mujeres.
+Muestra el balance entre el número de hombres y mujeres. Por ejemplo, se puede calcular la proporción masculina y se calcula dividiendo el número de hombres entre el número de mujeres. Se define de la manera:
+$$PS^{i}=\frac{Hombres^{i}}{Mujeres^{i}}$$
+Con:
+Brasil:
+Hombres $(0-4)$ años en el $2008=8226630$
+Mujeres $(0-4)$ años en el $2008= 7976611$
+$$PS^{i}=\frac{8226630}{7976611}=1.031$$
+En el grupo de edad de 0 a 4 años hay 103 hombres por cada 100 mujeres.
+Italia:
+Hombres $(0-4)$ años en el $2008=1453690$
+Mujeres $(0-4)$ años en el $2008=1373687$
+$$PS^{i}=\frac{1453690}{1373687}=1.058$$
+En el grupo de edad de 0 a 4 años hay 105 hombres por cada 100 mujeres.
