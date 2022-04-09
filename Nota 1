@@ -1,0 +1,63 @@
+---
+title: "Nota0"
+output: html_document
+date: '2022-04-08'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Diagrama de Lexis
+
+El diagrama de Lexis ayuda a comprender algunos eventos y fenómenos demográficos a través de una línea del tiempo. <br>
+La delimitación temporal en demografía es escencial, el timepo como un elemento indispenzable pata analiza la dinámica constante y cambios en espacios poblacionales. <br>
+En particular, en la demografía podemos definir dos tiempos:<br>
+1) Tiempo calendario <br>
+2) Tiempo de eventos demográficos <br>
+Por ejemplo: edad de 2 sentidos, nacimiento o en años cumplidos (aniversario) <br>
+En demografía existe  **la edad exacta** que se describe de la forma. Alguien nacio el 23/Jul/1985 y hoy es 11/Mar/2022 son 36.63 <br>
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 14.59.21.png "Ejemplo: Edad exacta") <br>
+
+Un elemento importante es el número de eventos que ocurren a través del timepo. En el diagrama de Lexis se representan nacimientos, defunciones, matrimonios, etc. <br>
+Se toman en cuenta los años calendario y edades cumplidas <br>
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 15.07.18.png "Ejemplo: Edad exacta") <br>
+
+---
+El **flujo** hace referencia a la población que permanece en el tiempo.<br>
+El **efectivo** hace referencia a la ocurrencia de un evento en un tiempo determinado.<br>
+El **cohorte** es el grupo de individuos que experimentan un evento durante un tiempo determinado. Ejemplo: la cohorte de los casados en 2015 y se divorcian salen de la cohorte.<br>
+La **generación** es un grupo de individuos que nace en un momento determinado.<br>
+
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 15.10.33.png "Ejemplo: Edad exacta") <br>
+
+$\tilde{ab}=$ nacimientos de todo 1990 <br>
+$\tilde{ac}+\tilde{bd}=$ dos líneas de vida <br>
+$\tilde{abc}=$ Defunciones de 1990 <br>
+$\tilde{cbd}=$ Defunciones de 1991 <br>
+
+En demografía se plantean 3 típos de análisis:<br>
+*Transversal: Se asocia conun momento en el tiempo.<br>
+*Longitudinal: Se vincula con estudios a través del tiempo. Ej: Análisis de una generación o de uan cohorte.<br>
+*Retrospectivo: Vinculado con estúdios que se realizan en un tiempo pasado, es decir, el análsis de vida de una población adulta mayor durante su juventud.<br>
+
+En particular, el diagrama de Lexis muestra un análisis longitudinal. Ej: nacimientos, defunciones, nupcialidad. Son los eventos demográficos y de estos surgen fenómenos demográficos como fecundiad, mortalidad y migración.<br>
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 15.20.04.png "Ejemplo: Edad exacta") <br>
+---
+# Las medidas en demografía
+## Medidas relativas
+*Razones: Cociente entre dos magnitudes independientes. <br>
+Ej:$\frac{Poblacion masculina}{Población femenina}$ <br>
+¿Cuántos hombres hay con respecto a las mujeres? <br>
+*Proporciones: Relación entre dos medidas de efectivos o flujo. <br>
+Ej: $\frac{Población masculina}{Polacion total}$ <br>
+¿Cuántos hombres con respecto a la pobalcioón total? <br>
+$\frac{Nacimientos hombres}{Nacimientos totales}$ <br>
+¿Cuántos hombres por cada nacimiento ocurrido?<br>
+*Tasa: El cociente entre flujo y efectivo <br>
+$\frac{Nacimientos en un año}{Población masculina}$ <br>
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 15.26.27.png "Ejemplo: Edad exacta") <br>
+### Ejemplos
+![Texto alternativo](Captura de Pantalla 2022-04-08 a la(s) 15.28.18.png "Ejemplos de las medidas relativas") <br>
+
+
