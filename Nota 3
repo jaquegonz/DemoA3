@@ -1,0 +1,129 @@
+---
+title: "Nota2"
+output:
+  html_document: default
+  pdf_document: default
+date: '2022-03-30'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+## Tasas brutas de Jalisco 2020
+
+TB de natalidad
+$$TBN=\frac{119604}{8348151} \cdot 1000=14.32700487 \%$$
+
+mortalidad 
+$$TBM=\frac{64461}{8348151}\cdot 1000=7.721590086 \%$$
+
+Inmigración interna
+$$TBI=\frac{1067778}{8348151}\cdot 1000=127.9059279\%$$
+Emigración interna
+$$TBE=\frac{841477}{8348151}\cdot 1000=100.798009\%$$
+Proporción de sexos al nacimiento
+$$PS^{i}=\frac{828944}{800264}\cdot100=103.5838\%$$
+En México en el año 2020 nacen 103 niños por cada 100 niñas.
+
+#Proporción de niñ@s por mujer
+$$PNM^{i}=\frac{POB_{<5años}}{POB_{fem}}$$
+Consideraremos que
+$POB_{fem_{15-44}}$
+$$PNM^{i}=\frac{2827377}{23855033}\cdot100=118.3288\%$$
+
+# Tasa de dependencia
+La tasa de dependencia se leraciona a las personas que tienen más posibilidades de ser dependientes
+Generalmente son los niños de 0-14 años pues aún dependen de sus padres y las personas de 65<
+$$PNM^{i}=\frac{POB_{0-14}+POB_{65+}}{POB_{15-64}}$$
+
+---
+## Piramide poblacional
+Añadir foto
+Declarar los valores de la gràfica, cantidad de hombres, mujeres y los rangos de edad
+```{r}
+Hombres <- c(60,50,40,30,25,20,15,10)
+names(Hombres)<-c('0-9','10-19','20-29','30-39','40-49','50-59','60-69','70+')
+Mujeres<- c(80,70,50,30,28,23,18,15)
+
+```
+Para graficar la piramide
+
+```{r}
+require("pyramid")
+pyramids (Left=Hombres , Llab="Hombres" , Right=Mujeres , Rlab="Mujeres" , Clab="Grupo de edad" , Laxis=c(0,20,40,60,80,100) , Csize=1 , main="Gràfica 1. Ejemplo de piramide poblacional clase de demografìa", Lcol="#427FCD", Rcol="#C671BB")
+```
+
+```{r}
+ages <- c('0-9','10-19','20-29','30-39','40-49','50-59','60-')
+males <- c(34,19,11,11,8,7,5)
+females <- c(26,25,16,11,7,5,1)
+data <- data.frame(males,females,ages)
+pyramid(data)
+# another example
+py.Males <- c(80,40,30,20,10)
+names(py.Males) <- c('0-9','10-19','20-29','30-39','40-')
+py.Females <- c(60,50,40,30,5)
+names(py.Females) <- names(py.Males)
+py.df <- data.frame(py.Females,py.Males)
+pyramid(py.df,Llab="Females",Rlab="Males",Lcol="navy", Ldens=5, Rcol="red",
+Rdens=10, GL=FALSE,main="An example of population pyramid\n with auto-axis")
+# GunmaPop2005 is included in this package.
+pyramid(GunmaPop2005,Llab="Males",Rlab="Females",Clab="",Laxis=seq(0,20000,len=5),
+AxisFM="d", AxisBM=",", Csize=0.8, Cstep=10,
+main="Population pyramid of Gunma Prefecture\n (Data: Census 2005, total by gender)")
+```
+
+### Ejemplo aguascalientes
+```{r}
+install.packages("tidyverse")
+require("tidyverse")
+ags<- read.csv("Personas01.CSV")
+tags<- as_tibble(ags)
+##clasificacion sexo por edades total
+ge <- tags %>%
+  as_tibble() %>%
+mutate (gedad =case_when(EDAD >=0 & EDAD <=4 ~1 , EDAD >=4 & EDAD <=9  ~2, EDAD >=10 & EDAD <=14  ~3, EDAD >=15 & EDAD <=19 ~4, EDAD >=20 & EDAD <=24  ~5, EDAD >=25 & EDAD <=29  ~6,EDAD >=30 & EDAD <=34  ~7, EDAD >=35 & EDAD <=39  ~8,EDAD >=40 & EDAD <=44  ~9, EDAD >=45 & EDAD <=49  ~10,EDAD >=50 & EDAD <=54  ~11, EDAD >=55 & EDAD <=59  ~12,EDAD >=60 & EDAD <=130  ~13, EDAD ==999 ~14 ))
+table(ge$gedad)
+##clasificacion sexo por edades mujeres
+gem <- tags %>%
+  as_tibble() %>%
+mutate (gedad =case_when(EDAD >=0 & EDAD <=4 ~1 , EDAD >=4 & EDAD <=9  ~2, EDAD >=10 & EDAD <=14  ~3, EDAD >=15 & EDAD <=19 ~4, EDAD >=20 & EDAD <=24  ~5, EDAD >=25 & EDAD <=29  ~6,EDAD >=30 & EDAD <=34  ~7, EDAD >=35 & EDAD <=39  ~8,EDAD >=40 & EDAD <=44  ~9, EDAD >=45 & EDAD <=49  ~10,EDAD >=50 & EDAD <=54  ~11, EDAD >=55 & EDAD <=59  ~12,EDAD >=60 & EDAD <=130  ~13, EDAD ==999 ~14 )) %>%
+  filter(SEXO==3)
+table(gem$gedad)
+##clasificacion sexo por edades hombres
+geh <- tags %>%
+  as_tibble() %>%
+mutate (gedad =case_when(EDAD >=0 & EDAD <=4 ~1 , EDAD >=4 & EDAD <=9  ~2, EDAD >=10 & EDAD <=14  ~3, EDAD >=15 & EDAD <=19 ~4, EDAD >=20 & EDAD <=24  ~5, EDAD >=25 & EDAD <=29  ~6,EDAD >=30 & EDAD <=34  ~7, EDAD >=35 & EDAD <=39  ~8,EDAD >=40 & EDAD <=44  ~9, EDAD >=45 & EDAD <=49  ~10,EDAD >=50 & EDAD <=54  ~11, EDAD >=55 & EDAD <=59  ~12,EDAD >=60 & EDAD <=130  ~13, EDAD ==999 ~14 )) %>%
+  filter(SEXO==1)
+table(geh$gedad)
+eh <- tags %>%
+  as_tibble() %>%
+  filter(SEXO==1)
+table(eh$gedad)
+
+install.packages("questionr")
+require("questionr")
+wtd.table(ge$SEXO, weights = ags$FACTOR)
+wtd.table(ge$gedad, weights = ags$FACTOR)
+```
+## Grafica de Aguascalientes
+```{r}
+AM<-c(4760,4737,4536,4799,4329,3970,3557,3423,3217,2725,2374,1878,4794)
+AH<-c(4727,4791,4848,4708,4193,3718,3195,3108,2859,2568,2067,1778,4324)
+names(AH)<-c('0-4','5-9','10-14','15-19','20-24','25-29','30-34','35-39','40-44','45-49','50-54','55-59','60-+')
+pyramids (Left=AH , Llab="Hombres" , Right=AM , Rlab="Mujeres" , Clab="Grupo de edad" , Laxis=seq(0,6000,len=5) , Csize=1 , main="Gráfica 2. PIRAMIDE POBLACIONAL EN AGUASCALIENTES", Lcol="#427FCD", Rcol="#C671BB")
+```
+---
+```{r}
+## conyugal
+ge <- tags %>%
+  as_tibble() %>%
+mutate(conyu = case_when ( SITUA_CONYUGAL==1 | SITUA_CONYUGAL>=5 & SITUA_CONYUGAL<=7 ~1, SITUA_CONYUGAL>=2 & SITUA_CONYUGAL<=4 ~2, SITUA_CONYUGAL==8 ~3, SITUA_CONYUGAL==9 ~4))
+
+```
+
+
+
+
