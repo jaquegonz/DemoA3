@@ -1,0 +1,172 @@
+---
+title: "Nota3"
+output: html_document
+date: '2022-04-20'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Fecundidad
+En la demografía existen 2 conceptos que es necesario diferenciar.
+-Fecundidad: se refiere al número de hijos que tienen las mujeres.
+-Fertilidad: se refiere a la capacidad biológica de la mujer de tener hijos.
+
+*Factores que impactan en la fecundidad de las mujeres*
+-Económica
+-Estado civil
+-Fisiológicos
+-Educación
+-Cultura
+-Familia
+-Morbilidad
+-Acceso a anticonceptivos
+-Mercado laboral
+-Fertilidad
+-Políticas públicas
+
+## Tasa bruta de natalidad
+$$TBN=\frac{Nacimientos}{Población}$$ 
+Normalmente está tasa bruta de natalidad de utiliza de manera anual y se interpreta en miles de personas
+Ejemplo:
+Nacimientos=470,900
+Población=27,720,000
+$$TBN=\frac{470900}{27720000}$$
+La TBN también se puede interpretar multiplicada por 1000, es decir, en esta población nacen 17 niños por cada mil personas.
+Fecundidad
+*¿Cuántos hijos puede tener una mujer durante su periodo de fecundidad?*
+Suponemos que inicia a los 15 y termina a los 45 años
+
+
+
+
+### Tasas específicas
+-Generales de fecundidad
+  *Tasa específica de fecundad:*
+  $$tef=\frac{Nacimiento^{i}}{\hat{Pob^{i}}femenina}$$
+  Ejemplo:
+  $$\begin{array}{1} Edad & Nacidos vivos & Pob.femenina & tef(pormil) \\ 15-19 & 14687 &2974000 & 4.93  \\ 20-24 & 116809 & 3404000 & 34.31  \\ 25-29 & 307767 & 3688000 & 83.45  \\ 30-34 & 389795 & 4286000 & 90.94 \\ 35-39 & 209707 & 4776000 & 43.90 \\  40-44 & 31270 & 4243000 &  7.36 \end{array}$$
+  *Tasa general de fecundidad:*
+  $$TGF=\frac{\sum_{i=15}^{44}nacimientos^{i}}{\sum_{i=15}^{44}Pob.femenina^{i}}$$
+  Ejemplo:
+  $$TGF=\frac{1070035}{23371000}=.04578 \rightarrow 45.78$$ 
+  nacimientos por cada mil mujeres en edad de 15 a 44 años
+  $$\begin{array}{1} Edad & Nacidos vivos & Pob.femenina & tef(pormil)  \\ 15-19 & 464102 & 5505991 & 84.2903 \\ 20-24 & 748723 & 5079067 & 147.4131 \\ 25-29 & 624181 & 4582202 & 136.2185 \\ 30-34 & 418695 & 4444767 & 94.1995 \\ 35-39 & 205503 & 4328249 & 47.4794 \\ 40-44 & 49430 & 3658904 & 13.5095  \end{array}$$
+```{r}
+  e <-c(15-19,20-14,25-29,30-34,35-39,40-44)
+  Nv <-c(464102,748723,624181,418695,205503,49430)
+  Pf <-c(5505991,5079067,4582202,4444767,4328249,3658904)
+  tefm<-c(84.2903,147.4131,136.2485,94.1995,47.4794,13.5095)
+```
+  $$\frac{2528275}{27599180} \cdot 1000= 91.6068$$
+    
+**Tasa específica de fecundidad**  <br>
+Medidas sintéticas de fecundidad. <br>
+Para planterar estas medidas tenemos que partir de algunos supuestos: <br>
+1) el grupo poblacional esta cerrado a la migración. <br>
+2) el grupo esta basado en solo un año, es decir, las tasas o medidas sintéticas se plantean solo se van a realizar para un año en específico <br>
+3) las mujeres no se mueren o no existe mortalidad femenina hasta que concluyan sus periodos fértiles (45 años) <br>
+las tasas sintéticas son las siguientes: <br>
+TGrf=suma(tasas específicas de fecundidad) <br>
+TEF----  <br>
+$$TGrF=suma (TEF)$$ <br>
+La siguiente medida es la tasa bruta de reproducción <br>
+y se define como TBR=suma(TEF)*S <br>
+donde: TEF= tasa específica de fecundidad <br>
+S=probabilidad de sobreviviencia de las mujeres <br>
+La última tasa es la tasa neta de reproducción y se define como la <br> 
+$$TNR=RangoEdad \cdot Suma(TEF)*S*PS$$ <br>
+donde: <br>
+TEF=Tasa específica de fecundidad <br>
+S=probabilidad de sobrevivemcia de las mujeres <br>
+PS= es la probablidiad de una mujere de sobrevivir de la edad cero hasta la edad de reproducción <br>
+ <br>
+---
+
+ <br>
+Por ejemplo, si tenemos una poblacion femenina de 15 a 45 años donde la suma de los nacimientos de esta poblacion en el año 2009 es de 1896 niñxs y esta poblacion es de 1000 mujeres  <br>
+$\rightarrow TGF= \frac{1896}{1000}=1.9$ por cada mujer nacen 1.9 niñxs.  <br>
+$\rightarrow TGF= Rango Edad \cdot \sum tef$ cuantas niñas y niños nacen por cada mujer  <br>
+$\rightarrow TBR= Rango Edad \cdot \sum tef \cdot S$ cuantas niñas nacen por cada mujer <br>
+Donde:
+$$S=\frac{100}{100+proporcion de sexos}$$
+$$Proporcion de sexos= \frac {nac hombres}{nac mujeres}$$
+Ejemplo:
+  $$\begin{array}{1} Grupos de edad & Nacimientos totales & mujeres & Nacimientos mujeres & TEF & TBR  \\ 15-19 & 12130 & 727168 & 5895 & 0.01668 \\ 20-24 & 42103 & 782583 & 20461 & 0.0538 \\ 25-29 & 80933 & 791698 & 39331 & 0.1022 \\ 30-34 & 93107 & 751566 & 45247 & 0.1239 \\ 35-39 & 55985 & 814971 & 27207 & 0.06869 \\ 40-44 & 11480 & 769345 & 5579 & 0.01492 \\ & & & TGF & 5*.3802 & 1.901 \\ \\ Prop sexos=105.773 & S=.4859 \\ & & & TBR & 5*0.1847 & 0.9236 \end{array}$$
+---
+<br> Este es el ejercicio anterior en rscript
+```{r}
+gedad<- c("15-19","20-24","25-29","30-34","35-39","40-44")
+nt <-c(12130 ,42103 ,80933 ,93107 ,55985 ,11480 )
+muj<-c(727168,782583,791698,751566,814971,769345)
+nmuj<-c(5895,20461,39331,745247,27207,5579)
+nhom<-nt - nmuj
+propsex =sum(nhom)/sum(nmuj)*100
+S=(100/100+propsex)
+tef <-(nt/muj)
+teffem <-(nmuj/muj)
+n=5 #son edades quinquenales entonces el rango de edad es 5
+TGrF=sum((nt)/muj)
+TGF <-sum(tef)*n
+TBR <- TGF*S
+tasas <- data.frame(gedad,nt,muj,nmuj,nhom,tef,teffem)
+```
+<br>
+Haremos el mismo anàlsis para un paìs diferente <br>
+Hacer un anàlsis comparativo de los dos paises elegidos con respecto a las Tg y TBR... En rmarkdown añadir un poco de constexto sobre las diferencias de los paises. <br> 
+--- 
+```{r}
+```
+## Aculco 2020
+```{r}
+gedadac<- c("15-19","20-24","25-29","30-34","35-39")
+ntac <-c(26 ,57 ,59 ,39 ,12 )
+mujac<-c(2411,2125,1814,1705,1454)
+nmujac<-c(13,26,29,20,8)
+nhomac<-ntac - nmujac
+propsexac =sum(nhomac)/sum(nmujac)*100
+Sac=(100/100+propsexac)
+tefac <-(ntac/mujac)
+teffemac <-(nmujac/mujac)
+n=5 #son edades quinquenales entonces el rango de edad es 5
+TGrFac=sum((ntac)/mujac)
+TGFac <-sum(tefac)*n
+TBRac <- TGFac*Sac
+tasasac <- data.frame(gedadac,ntac,mujac, nmujac,nhomac,tefac,teffemac)
+```
+| Grupo de edad | Nacimientos totales | Mujeres | Nacidas mujeres | Nacidos hombres | TEF | TEF fe |
+|-------|----|------|----|----|-------------|-------------|
+| 15-19 | 26 | 2411 | 13 | 13 | 0.010783907 | 0.005391954 |
+| 20-24 | 57 | 2125 | 26 | 31 | 0.026823529 | 0.012235294 |
+| 25-29 | 59 | 1814 | 29 | 30 | 0.032524807 | 0.015986770 |
+| 30-34 | 39 | 1705 | 20 | 19 | 0.022873900 | 0.011730205 |
+| 35-39 | 12 | 1454 | 8  | 4  | 0.008253095 | 0.005502063 |
+<br>
+## Calimaya 2020
+```{r}
+gedadca<- c("15-19","20-24","25-29","30-34","35-39")
+ntca <-c(9 ,24 ,27 ,13 ,5 )
+mujca<-c(2267,2222,1973,2087,1916)
+nmujca<-c(6,16,13,8,2)
+nhomca<-ntca - nmujca
+propsexca =sum(nhomca)/sum(nmujca)*100
+Sca=(100/100+propsexca)
+tefca <-(ntca/mujca)
+teffemca <-(nmujca/mujca)
+n=5 #son edades quinquenales entonces el rango de edad es 5
+TGrFca=sum((ntca)/mujca)
+TGFca <-sum(tefca)*n
+TBRca <- TGFca*Sca
+tasasca <- data.frame(gedadca,ntca,mujca, nmujca,nhomca,tefca,teffemca)
+```
+| Grupo de edad | Nacimientos totales | Mujeres | Nacidas mujeres | Nacidos hombres | TEF | TEF fe |
+|-------|----|------|----|----|-------------|-------------|
+| 15-19 | 9  | 2267 | 6  | 3  | 0.03970004  | 0.002646670 |
+| 20-24 | 24 | 2222 | 16 | 8  | 0.010801080 | 0.007200720 |
+| 25-29 | 27 | 1973 | 13 | 14 | 0.013684744 | 0.006588951 |
+| 30-34 | 13 | 2087 | 8  | 5  | 0.006229037 | 0.003833253 |
+| 35-39 | 5  | 1916 | 2  | 3  | 0.002609603 | 0.001043841 |
+
+Con lo que respecta al municipio de aculco presenta mayores niveles de nacimientos dentro del priemr grupo de edad, pues tienen de cada 1000 mujeres nacen 107 de los cuales aproximadamente la mitad son mujeres.
+Y con el municipio de Calimaya se meustra que las mujeres que tienen edad avanzada 35-39 años de edad se tienen pocos nacimientos pues de 1000 mujeres de esa edad nacen 26 niños de los cuales 10 son mujeres.
