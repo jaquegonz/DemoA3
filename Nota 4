@@ -1,0 +1,37 @@
+---
+title: "Nota4"
+output: html_document
+date: '2022-05-11'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+require(dplyr)
+base1 <- read.csv(file.choose())
+
+base2 <- base1 %>%
+  as_tibble() %>%
+  mutate(gedad=case_when(EDAD>=0 & EDAD<=14~1, 
+         EDAD>= 15 & EDAD<=29 ~ 2,
+         EDAD>=30 & EDAD<= 44 ~ 3,
+         EDAD>=45 & EDAD<=59 ~ 4,
+         EDAD>=60 & EDAD<=74 ~ 5,
+         EDAD>=75 & EDAD<=89 ~ 6,
+         EDAD>=90 & EDAD<=100 ~7,
+         EDAD==999 ~8), 
+         conyu=case_when(SITUA_CONYUGAL==1 | SITUA_CONYUGAL==5 ~1,
+                         SITUA_CONYUGAL>=2 & SITUA_CONYUGAL<=4 ~ 2,
+                         SITUA_CONYUGAL==6 ~ 3,
+                         SITUA_CONYUGAL==9 ~ 4)) %>%
+  filter(MUN==3 | MUN==1) %>%
+  select(EDAD,gedad,conyu,MUN)
+
+
+table(base2$MUN)
+table(base2$EDAD, base2$gedad)
+table(base2$SITUA_CONYUGAL, base2$conyu)
+
+```
