@@ -1,0 +1,89 @@
+---
+title: "Nota5"
+output: html_document
+date: '2022-05-18'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Mortalidad
+**Muerte:** Desaparición de toda evidencia de vida en cualquier tiempo despuesde que una persona haya nacido viva. \br
+
+## Tasa bruta de mortalidad
+$$TBM=\frac{M_{t \rightarrow t+n}}{P_{t \rightarrow t+n}}$$
+donde \rightarrow $M=$Muertes del tiempo t a t+n \br
+
+$P=$Pöblación a mitad de año de t a t+n \br
+
+Ejemplo:\br
+
+Muertes \rightARROW 623,300\br
+
+población a mitazd de año \rightarrow 127,000,000\br
+
+\rigtharrow $TBM=\frac{623300}{127000000}=0.004907$ \br
+
+$TBM \cdot 1000=4.9$ \br
+
+\rightarrow La tasa bruta de mortalidad se interpreta como 4.9 muertes por cada 1005 personas.\br
+
+## Tasa específica de mortalidad
+
+La tasa específica de ,prtalidad calcula la mortalidad por grupo de edad y permite conocer la tasa por cada grupo de edad.\br
+
+La TEM se cálcula porque la mortalidad es diferenciada por edad o grupo de edad. Por ejemmplo, las personas de 0 a 9 años tienen una mayor mortalidad que las personas de 1 a 4 años o 5 a 9 años.\br
+
+$$TEM_{t \rightarrow t+n}^{i}=\frac{M^{i}_{t \rightarrow t+n}}{P_{t \rightarrow t+n}^{i}}$$
+$i$ es el grupo de edad
+
+$M^{i}_{t \rightarrow t+n}$ Muertes del año t a t+n
+
+$P^{i}_{t \rightarrow t+n}$ Población del años t a t+n
+
+Ejemplo: $\vdots$
+
+| Grupo de edad | Muertes | Pob a mitad año | TEM     | TEM*1000 |
+|---------------|---------|-----------------|---------|----------|
+| <1            | 8321    | 12243521        | .000679 | 67       |
+| 1 a 4         | 2132    | 12873410        | .00016  | 16       |
+| $\vdots$      |$\vdots$ | $\vdots$        | $\vdots$|$\vdots$  |
+| 65 a 69       | 95748   | 5872590         | .0163   | 1630     |
+| 70 y +        | 157197  | 1735817         | .0905   | 9050     |
+
+```{r}
+require(dplyr)
+morbcs <-read.csv(file.choose())
+bcs1 <- morbcs %>%
+  as_tibble() %>%
+  select(VAR,BCS)
+pobbcs <- read.csv(file.choose())
+pbcs <- pobbcs %>%
+  as_tibble() %>%
+  mutate(pob=case_when(EDAD==0 ~1,
+                       EDAD>=1 & EDAD<=4 ~2,
+                       EDAD>=5 & EDAD<=9 ~3,
+                       EDAD>=10 & EDAD<=14 ~4,
+                       EDAD>=15 & EDAD<=19 ~5,
+                       EDAD>=20 & EDAD<=24 ~6,
+                       EDAD>=25 & EDAD<=29 ~7,
+                       EDAD>=30 & EDAD<=34 ~8,
+                       EDAD>=35 & EDAD<=39 ~9,
+                       EDAD>=40 & EDAD<=44 ~10,
+                       EDAD>=45 & EDAD<=49 ~11,
+                       EDAD>=50 & EDAD<=54 ~12,
+                       EDAD>=55 & EDAD<=59 ~13,
+                       EDAD>=60 & EDAD<=64 ~14,
+                       EDAD>=65 & EDAD<=69 ~15,
+                       EDAD>=70 & EDAD<=74 ~16,
+                       EDAD>=75 & EDAD<=79 ~17,
+                       EDAD>=80 & EDAD<=84 ~18,
+                       EDAD>=85 & EDAD<=110 ~19
+                       ))
+t1 <-table(pbcs$pob)
+t2 <- data.frame(t1)
+tablaa <- data.frame(bcs1,t2) %>%
+  as_tibble() %>%
+  select(VAR,BCS, Freq)
+```
