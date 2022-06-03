@@ -1,0 +1,173 @@
+---
+title: "Nota 5"
+author: "JGA"
+date: "5/25/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Tabla de vida
+En en análisis demográfico ha existido una inquietud desde sus inicios, la cuál consiste en conocer la longevidad de la población o el estudio del número de años que viven las personas.
+
+Es importante señalar que la longevidad ha tenido una serie de cambios a través del tiempo y en las diferentes regiones .
+Las diferencias en la mortalidad se presentan entre población, en las edades en el sexo, niveles socioeconómicos.
+Estas diferencias pueden ser matizadas a través de una medida que consiste en conocer cuántos años vive una cohorte nacida en un año n.
+
+La idea de una tabla de vida es conocer como viven en promedio las personas hasta que se extingan,con esto se puede obtener el número de años en promedio que vive la población estudiada.
+
+Las tablas de vida se proponen como una estimación de la esperanza de vida, se utilizan tasas de sobrevivencia en edades desplegadas o grupos de edad.
+
+Para la construcción de una tabla de vida (TV) se plantean los siguientes supuestos:
+
+1. En la población estudiada **No hay migración**
+
+2. Las tasas específicas de mortalidad **No cambian en el tiempo**
+3. La población incial es de 100,000 personas
+
+Por otro lado, la TV se puede calcular por sexo o por toda la población.
+
+La información mínima para calcular la TV es el número de definciones por edad y la población a mitad del año.
+
+## Construcción de una TV
+
+Población hipotética de 100,00 personas en el año t.
+
+1. Tasas específicas de mortalidad $$m_{x}=\frac{d_{x}}{P_{x}}$$
+
+donde:
+
+$m_{x}=$ tasa específica de mortalidad en la edad x.
+
+$d_{x}=$defunciones en la edad x.
+
+$P_{x}=$Población a mitad de año en la edad x.
+
+2. Población de muerte
+
+La población de muerte se representa a tráves de $q_{x}$ y se define como la probabilidad de morir entre la edad $x$ y $x+1$
+
+$$q_{x}=\frac{d_{x}}{P_{x}+\frac{1}{2}d_{x}}$$
+
+donde:
+
+$q_{x}=$ es la población de morir a la edad x.
+
+$d_{x}=$ defunciones a la edad x.
+
+$P_{x}=$ Pobación a mitad de año.
+
+Sabemos que:
+
+$$m_{x}=\frac{d_{x}}{P_{x}} \rightarrow dx=m_{x}P_{x}$$
+
+$$\rightarrow q_{x}=\frac{m_{x}P_{x}}{P_{x}+\frac{1}{2}m_{x}P_{x}}=\frac{2m_{x}P_{x}}{2+m_{x}}$$
+
+La ecuación $q_{x}$ es válida para las edades mayores a 1, por lo que la probabilidad de morir entre 0 y 1 año es:
+
+$$q_{0}=\frac{d_{0}}{N}$$
+
+donde:
+
+$q_{0}=$ probabilidad de morir edad 0.
+
+$d_{0}=$ número de muertes a edad 0.
+
+$N=$ nacidos vivos de la población en estudio.
+
+Por otro lado, tambien se considea que las personas mayores a 100 años se mueren todas por lo que se plantea 
+
+$$q_{w}=1$$
+
+Con base en li anterior, se plantea la probabilidad de sobrevivencia como:
+
+$$p_{x}=1-q_{x}$$
+
+donde:
+
+$p_{x}=$ Probabilidad se sobrevivencia a edad x.
+
+$q_{x}=$ Probabilidad de morir a edad x.
+
+Con $q_{x}$ y la población incial de 100,00 el número de muertes ($d_{x}$) de la edad $x$ a $x+1$ se puede conocer mediante otro indicador que es $l_{x}$ y se define como lños sobrevivientes a la edad x
+
+$$d_{x}=q_{x}*l_{x}$$
+
+donde:
+
+$d_{x}=$ defunciones edad x
+
+$q_{x}=$ número de sobrevivientes a edad x
+
+$l_{x+1}=l_{x}-d_{x}$
+
+| $P_{x}$ | $q_{x}$ | $d_{x}$ | $l_{x}$ |
+|---------|---------|---------|---------|
+| 100000  | 0.00015 | 15      | 100000  |
+|         |         |         | 99985   |
+
+# Años personas vividos y esperanza de vida
+
+Los años personas vividos se define como aquellos que sobrevivieron desde la edad 0 hasta la edad x y se plantea como $L_{x}$:
+
+$$L_{x}=l_{x+1}+\frac{1}{2}d_{x}$$
+
+Sustituyendo $d_{x}$
+
+$$L_{x}=l_{x+1}+\frac{1}{2}(l_{x}-l_{x+1})$$
+
+Para $L_{0}$ se calcula $L_{0}=3l_{0}+7l_{1}$
+```{r tablavida}
+def<- c(2107,157,107,65,64,50,53,36,40,50,33,45,61,64,56,99,128,228,313,310,342,359,315,382,378,346,345
+        ,374,359,400,378,457,468,486,495,543,572,532,530,585,646,674,754,810,852,940,997,1064,1160,1194,1263,
+        1299,1412,1531,1642,1810,1795,1970,2221,2468,2487,2540,2500,2752,2872,3027,3216,3382,3567,
+        3729,3825,3991,4257,4559,5048,5554,6059,6430,6805,7046,7255,7345,7335,7426,7339,6930,6295,5643,4925,
+        4548,4168,3676,3103,2440,1898,1452,1086,728,490,326,521)
+pob <- c(137142,133215,131863,131550,132079,134757,135688,135644,136510,137324,138726,141998,141896,142339,
+         143270,144259,144591,141421,139874,141924,145217,145795,145722,148494,147772,145090,140700,136920,136577,
+         136913,138033,140798,144884,149262,156961,158929,152278,149190,144668,142998,143664,145606,152324,153253,
+         153474,151534,148662,145121,141342,140060,139951,135295,131617,131552,128806,126318,125839,120511,
+         122914,128140,108036,103539,97683,89588,88021,82127,79287,75814,71875,69111,66313,61145,
+         58941,57185,55513,55271,53469,49760,47596,44296,40960,36590,32686,28931,25918,22212,18884,
+         13723,11052,9453, 7658,6058,4628,3379,2352,1667,1165,684,475,331,464)
+defar <- round(def/3,6)
+mx <- (def/3)/pob
+mxr <-round(mx,6)
+qx <- (2*mx)/(2+mx)
+qx[1] <- (def[1]/3)/(416576/3)
+qxr <- round(qx,6)
+px <- 1-qx
+pxr <- round(px,6)
+lx <- numeric(101)
+lx[1] <-100000
+dx <- numeric(101)
+dx[1]=100000*qx[1]
+for(i in 1:100){
+  lx[i+1]<- lx[i]-dx[i]
+  dx[i+1]<- qx[i+1]*lx[i+1]
+}
+lxr <- round(lx,6)
+dxr <- round(dx,6)
+Lx <- numeric(101)
+for (i in 1:101){
+  Lx[i]<- lx[i+1]+(1/2*(dx[i]))
+}
+Lx[1] <- (0.3*lx[1])+(0.7*lx[2]) 
+Lx[101] <- (1/2*(dx[i]))
+Lxr <- round(Lx,6)
+Tx <- numeric(101)
+for (i in 1:101) {
+  Tx[i]=sum(Lx[i:101])
+}
+Txr<- round(Tx,6)
+ex <- Tx/lx
+exr<- round(ex,6)
+
+TV <- data.frame("Pob"=pob, "def"=defar, "$m_{x}$"=mxr, 
+                 "$q_{x}$"=qxr, "$p_{x}$"=pxr, "$d_{x}$"=dxr, 
+                 "$l_{x}$"=lxr, "$L_{x}$"=Lxr, "$T_{x}$"=Txr,
+                 "e_{x}"=exr)
+knitr::kable(TV,align = 'c', caption = "Tabla de vida")
+```
