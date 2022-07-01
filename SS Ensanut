@@ -1,0 +1,62 @@
+library(readr)
+require(questionr)
+require(dplyr)
+require(kableExtra)
+
+resi <- read.csv(file.choose())
+adul <- read.csv(file.choose())
+
+resi1 <- data.frame(resi,
+                    upm=as.character(resi$UPM),
+                    viv_sel=as.character(resi$VIV_SEL),
+                    hogar=as.character(resi$HOGAR),
+                    numren=as.character(resi$NUMREN))
+adul1 <- data.frame(adul,
+                    upm=as.character(adul$UPM),
+                    viv_sel=as.character(adul$VIV_SEL),
+                    hogar=as.character(adul$HOGAR),
+                    numren=as.character(adul$NUMREN))
+llave <- c("upm","viv_sel","hogar","numren")
+tabla <- merge(resi1,adul1, by=llave, all = T)
+# asalariados
+tablasa <- tabla %>%
+  as_tibble() %>%
+  mutate(a=case_when((P3_21==1 & P3_23<=3)~1, (P3_21==2 & P3_22<=5 & P3_23<=3)~2)) %>%
+  filter(a==1 | a==2)
+#Sexos
+hasa <- tablasa %>%
+  as_tibble() %>%
+  filter(SEXO.x==1) %>%
+  mutate(h=case_when(SEXO.x==1~1))
+masa <- tablasa %>%
+  as_tibble() %>%
+  filter(SEXO.x==2) %>%
+  mutate(m=case_when(SEXO.x==2~1))
+wtd.table(hasa$h,weights = hasa$FACTOR)
+wtd.table(masa$m,weights = masa$FACTOR)
+#Grupos de edad
+gtablasa <- tablasa %>%
+  as_tibble() %>%
+  mutate(g=case_when(EDAD.x>=20 & EDAD.x<=29 ~1,
+                     EDAD.x>=30 & EDAD.x<=39 ~2,
+                     EDAD.x>=60 ~3))
+table(gtablasa$g)
+wtd.table(gtablasa$g,weights = gtablasa$FACTOR)
+#Situción conyugal
+ctablasa <- tablasa %>%
+  as_tibble() %>%
+  mutate(c= case_when(P3_19==1 | P3_19==6 ~1,
+                      P3_19>=2 & P3_19<=4 ~2,
+                      P3_19==5 ~3,
+                      P3_19==7 ~4))
+table(ctablasa$c)
+wtd.table(ctablasa$c,weights = ctablasa$FACTOR)
+#Nivel escolar
+ntablasa <- tablasa %>%
+  as_tibble() %>%
+  mutate(n=case_when(NIVEL<=1 ~1,
+                     NIVEL==2 | NIVEL==3 | NIVEL==5 | NIVEL==6 ~2,
+                     NIVEL==4 | NIVEL==7 ~3,
+                     NIVEL>=8 ~4))
+table(ntablasa$n)
+wtd.table(ntablasa$n,weights = ntablasa$FACTOR)
